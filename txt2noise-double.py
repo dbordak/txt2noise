@@ -8,9 +8,9 @@ from PIL import ImageFont, ImageDraw, Image
 font = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans-Oblique.ttf", 12)
 
 sentence = sys.argv[1]
-instrument_high = 4
-instrument_low = 25
-instrument_secondary = 20
+instrument_high = 8
+instrument_low = 0
+instrument_secondary = 9
 
 image = Image.new("L", (800,12))
 draw = ImageDraw.Draw(image)
@@ -28,7 +28,7 @@ for x in range(0,800):
     for y in range(0,12):
         vol = int(image2.getpixel((x, y))/2)
         if vol and vol != 127:
-            backup.append(Note(y, 5, 1/16, vol))
+            backup.append(Note(y, 4, 1/16, int(vol*.7)))
     if len(backup):
         noping = 0
         backup_list.append(backup)
@@ -47,7 +47,7 @@ for x in range(0,800):
     for y in range(0,12):
         vol = int(image.getpixel((x, y))/2)
         if vol and vol != 127:
-            notes.append(Note(y, 4, 1/16, vol))
+            notes.append(Note(y, 5, 1/16, vol))
     if len(notes):
         seq = NoteSeq(notes)
         notes_list_high.append(NoteSeq(notes[0].harmonize(seq)))
