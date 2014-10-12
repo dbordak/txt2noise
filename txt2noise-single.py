@@ -8,8 +8,8 @@ from PIL import ImageFont, ImageDraw, Image
 font = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans-Oblique.ttf", 12)
 
 sentence = sys.argv[1]
-instrument_high = 25
-instrument_low = 1
+instrument_high = 2
+instrument_low = 25
 
 image = Image.new("L", (800,12))
 draw = ImageDraw.Draw(image)
@@ -33,8 +33,8 @@ for x in range(0,800):
         else:
             notes_list_low.append(Rest(1/16))
     else:
-        notes_list_high.append(Rest(1/16))
-        notes_list_low.append(Rest(1/16))
+        notes_list_high.append(Rest(1/32))
+        notes_list_low.append(Rest(1/32))
 
 midi = Midi(tempo=90, instrument=instrument_high)
 midi.seq_chords(notes_list_high)
