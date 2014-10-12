@@ -25,6 +25,8 @@ for track, sentence in enumerate(sentences):
         notes = []
         for y in range(0,12):
             vol = int((255 - image.getpixel((x, y)))/2)
+            if vol == 255:
+                continue
             if vol:
                 notes.append(Note(y, 5, 1/16, vol))
         if len(notes):
