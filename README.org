@@ -1,0 +1,15 @@
+#+Title: txt2noise
+
+HackRU Fall 2014 Entry
+
+Converts a string into a 'song'. The sounds created are dependent upon the shape of the letters in your string. For example, the (capital) letter F will attempt to make a chord out of a high note and a middle note, after the stem (more on vertical lines later).
+
+* Process
+
+First, your string is rendered to a bitmap using a font defined in the script (by default ~DejaVuSans-Oblique.ttf~). This bitmap is then scanned in vertical lines; each line represents a point in time (exact units determined by BPM and the type of note used) with the vertical position representing pitch.
+
+TODO: Put example bitmap here
+
+The shade of a pixel represents intensity/volume. Black, having value 0, represents the lack of a note. White, having value F, represents the loudest possible note. If an entire vertical line has only black pixels, that line represents a rest (by default a 1/16 rest). Otherwise, the usable pixels are scanned and checked for possible chords.
+
+TODO: More stuff.
