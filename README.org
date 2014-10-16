@@ -27,12 +27,12 @@ sox
 DejaVu Sans
 #+END_EXAMPLE
 
-* I used python3 out of a stubborn desire to reduce the ratio of python2:python3 projects out there. 
+- I used python3 out of a stubborn desire to reduce the ratio of python2:python3 projects out there. 
 
-* Pillow is a great library and everyone should have it. If not, use pip.
+- Pillow is a great library and everyone should have it. If not, use pip.
 
-* Pyknon has issues with the pip version, you're gonna have to go get it here: https://github.com/kroger/pyknon
+- Pyknon has issues with the pip version, you're gonna have to go get it here: https://github.com/kroger/pyknon
 
-* fluidSynth is used to render the midi files. If you're on linux, you can probably get it with whatever package manager you're using. Honestly this could be replaced with anything else that renders ~.midi~ files, though.
+- fluidSynth is used to render the midi files. If you're on linux, you can probably get it with whatever package manager you're using. Honestly this could be replaced with anything else that renders ~.midi~ files, though.
 
-* sox is really great. Probably also easy to get on any given linux distro. Donno about anywhere else.
+- sox is really great. Probably also easy to get on any given linux distro. Donno about anywhere else.
