@@ -2,17 +2,28 @@
 
 HackRU Fall 2014 Entry
 
-Converts a string into a 'song'. The sounds created are dependent upon the shape of the letters in your string. For example, the (capital) letter F will attempt to make a chord out of a high note and a middle note, after the stem (more on vertical lines later).
+Converts a string into a 'song'. The sounds created are dependent upon the shape of the letters in your string.
+For example, the (capital) letter F will attempt to make a chord out of a high note and a middle note, after the stem (more on vertical lines later).
 
 * Process
 
-First, your string is rendered to a bitmap using a font defined in the script (by default ~DejaVuSans-Oblique.ttf~). This bitmap is then scanned in vertical lines; each line represents a point in time (exact units determined by BPM and the type of note used) with the vertical position representing pitch.
+First, your string is rendered to a bitmap using a font defined in the script (by default ~DejaVuSans-Oblique.ttf~).
+This bitmap is then scanned in vertical lines; each line represents a point in time (exact units determined by BPM and the type of note used) with the vertical position representing pitch.
 
 TODO: Put example bitmap here
 
-The shade of a pixel represents intensity/volume. Black, having value 0, represents the lack of a note. White, having value F, represents the loudest possible note. If an entire vertical line has only black pixels, that line represents a rest (by default a 1/16 rest). Otherwise, the usable pixels are scanned and checked for possible chords. These chords are split between two instruments -- one attempts to make the lowest chord possible, the other attempts to make the highest chord possible. A third instrument starts after the first word is completed, lagging behind one word. It is quieter and lower-pitched than the main instruments.
+The shade of a pixel represents intensity/volume.
+Black, having value 0, represents the lack of a note.
+White, having value F, represents the loudest possible note.
+If an entire vertical line has only black pixels, that line represents a rest (by default a 1/16 rest).
+Otherwise, the usable pixels are scanned and checked for possible chords.
+These chords are split between two instruments -- one attempts to make the lowest chord possible, the other attempts to make the highest chord possible.
+A third instrument starts after the first word is completed, lagging behind one word.
+It is quieter and lower-pitched than the main instruments.
 
-Because of a deficiency in the MIDI library I chose, I cannot make a 3-instrument track -- instead, I make 3 1-instrument tracks. After this is completed, I render each of them using FluidSynth, producing ~.WAV~ files. These are then stitched together and converted using ~sox~.
+Because of a deficiency in the MIDI library I chose, I cannot make a 3-instrument track -- instead, I make three 1-instrument tracks.
+After this is completed, I render each of them using FluidSynth, producing ~.WAV~ files.
+These are then stitched together and converted using ~sox~.
 
 * Requirements
 
@@ -27,12 +38,20 @@ sox
 DejaVu Sans
 #+END_EXAMPLE
 
-- I used python3 out of a stubborn desire to reduce the ratio of python2:python3 projects out there. 
+- I used python3 out of a stubborn desire to reduce the ratio of python2:python3 projects out there.
+  Seriously, peeps, it's 2014.
 
-- Pillow is a great library and everyone should have it. If not, use pip.
+- Pillow is a great library and everyone should have it.
+  If you're on linux, whatever distro you're using probably has it in the repositories; it's pretty common.
+  If not, or the idea of using a system packag manager for python packages doesn't jive with you, use pip.
 
-- Pyknon has issues with the pip version, you're gonna have to go get it here: https://github.com/kroger/pyknon
+- Pyknon has issues with the pip version, you're gonna have to go get it [[https://github.com/kroger/pyknon][here.]]
 
-- fluidSynth is used to render the midi files. If you're on linux, you can probably get it with whatever package manager you're using. Honestly this could be replaced with anything else that renders ~.midi~ files, though.
+- fluidSynth is used to render the midi files.
+  Again, linux peeps probably get it with their system package manager.
+  Honestly this could be replaced with anything else that renders ~.midi~ files, like =TiMidity++=.
+  That didn't produce the same quality of results when I used it, though (but I may not have been using it properly).
 
 - sox is really great. Probably also easy to get on any given linux distro. Donno about anywhere else.
+
+- You can replace the font with something else, I just didn't make an arg for it. Yet.
